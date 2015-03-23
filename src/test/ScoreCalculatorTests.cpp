@@ -37,8 +37,7 @@ void ScoreCalculatorTests::CheckScoreOnShotDifferentFromFirst(const ScoreTable& 
 
 TEST_F(ScoreCalculatorTests, on_pair)
 {
-	int diceArr[] = {1,1,3,4,5};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,3,4,5};
 	
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 2);
@@ -51,8 +50,7 @@ TEST_F(ScoreCalculatorTests, on_pair)
 
 TEST_F(ScoreCalculatorTests, on_tris)
 {
-	int diceArr[] = {1,1,1,4,5};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,1,4,5};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 3);
@@ -64,8 +62,7 @@ TEST_F(ScoreCalculatorTests, on_tris)
 
 TEST_F(ScoreCalculatorTests, on_double_pair)
 {
-	int diceArr[] = {1,1,3,3,5};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,3,3,5};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 2);
@@ -77,8 +74,7 @@ TEST_F(ScoreCalculatorTests, on_double_pair)
 
 TEST_F(ScoreCalculatorTests, on_straight)
 {
-	int diceArr[] = {1,2,3,4,5};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,2,3,4,5};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 1);
@@ -94,10 +90,23 @@ TEST_F(ScoreCalculatorTests, on_straight)
 	CheckScoreOnShotDifferentFromFirst(expectedTable);
 }
 
+TEST_F(ScoreCalculatorTests, on_false_straight)
+{
+	dice = { 1, 2, 3, 4, 6 };
+
+	ScoreTable expectedTable;
+	expectedTable.AssignScoreIfNotAssigned(Scores::one, 1);
+	expectedTable.AssignScoreIfNotAssigned(Scores::two, 2);
+	expectedTable.AssignScoreIfNotAssigned(Scores::three, 3);
+	expectedTable.AssignScoreIfNotAssigned(Scores::four, 4);
+	expectedTable.AssignScoreIfNotAssigned(Scores::six, 6);
+
+	CheckScoreOnFirstShot(expectedTable);
+}
+
 TEST_F(ScoreCalculatorTests, on_full)
 {
-	int diceArr[] = {1,1,3,3,3};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,3,3,3};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 2);
@@ -112,8 +121,7 @@ TEST_F(ScoreCalculatorTests, on_full)
 
 TEST_F(ScoreCalculatorTests, on_poker)
 {
-	int diceArr[] = {1,1,1,1,5};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,1,1,5};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 4);
@@ -128,8 +136,7 @@ TEST_F(ScoreCalculatorTests, on_poker)
 
 TEST_F(ScoreCalculatorTests, on_yahtzee)
 {
-	int diceArr[] = {1,1,1,1,1};
-	dice.assign(diceArr, diceArr+5);
+	dice = {1,1,1,1,1};
 
 	ScoreTable expectedTable;
 	expectedTable.AssignScoreIfNotAssigned(Scores::one, 5);

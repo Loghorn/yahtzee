@@ -51,9 +51,9 @@ void ConsoleWriter::diceRolled(const std::vector<Die> &dice, size_t currentShot,
 	});
 	cout << endl;
 	cout << "Posizione: ";
-	for(int i = 0; i < dice.size(); i++)
+	for(auto i = 0u; i < dice.size(); i++)
 	{
-		cout << i+1 << " ";
+		cout << (i + 1) << " ";
 	}
 	cout << endl;
 	cout << endl;

@@ -91,7 +91,6 @@
     <ClInclude Include="..\src\Yahtzee\Die.h" />
     <ClInclude Include="..\src\Yahtzee\GameConfiguration.h" />
     <ClInclude Include="..\src\Yahtzee\GameState.h" />
-    <ClInclude Include="..\src\Yahtzee\Generala.h" />
     <ClInclude Include="..\src\Yahtzee\Histogram.h" />
     <ClInclude Include="..\src\Yahtzee\PlayerConfiguration.h" />
     <ClInclude Include="..\src\Yahtzee\Rule.h" />

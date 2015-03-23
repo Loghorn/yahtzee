@@ -46,10 +46,9 @@ TEST_F(YahtzeeTest, on_start_turn_should_notify_writer_with_first_player)
 
 TEST_F(YahtzeeTest, on_roll_dice_should_notify_writer_and_calculate_score)
 {
-	Yahtzee game(CreateOnePlayerAsMarcoWithMockedRoller(), DEFAULT_GAME_CONFIG, writer);
-
-	int mockedDiceValueArr[5] = {1,1,2,3,4};
+	unsigned short mockedDiceValueArr[5] = {1,1,2,3,4};
 	mockedRoller.AssignDiceValues(mockedDiceValueArr);
+	Yahtzee game(CreateOnePlayerAsMarcoWithMockedRoller(), DEFAULT_GAME_CONFIG, writer);
 	vector<Die> mockedDiceValue(mockedDiceValueArr, mockedDiceValueArr + 5);
 
 	ScoreTable expectedScores;
@@ -71,8 +70,7 @@ TEST_F(YahtzeeTest, on_roll_dice_should_notify_writer_and_calculate_score)
 
 TEST_F(YahtzeeTest, on_roll_dice_three_times_should_remain_no_shots)
 {
-	int mockedDiceValueArr[5] = {1,1,2,3,4};
-	mockedRoller.AssignDiceValues(mockedDiceValueArr);
+	mockedRoller = { 1, 1, 2, 3, 4 };
 	Yahtzee game(CreateOnePlayerAsMarcoWithMockedRoller(), DEFAULT_GAME_CONFIG, writer);
 	
 	game.newGame();
@@ -90,8 +88,7 @@ TEST_F(YahtzeeTest, on_roll_dice_three_times_should_remain_no_shots)
 
 TEST_F(YahtzeeTest, on_select_score_should_assign_scores_to_current_player)
 {
-	int mockedDiceValueArr[5] = {1,1,1,1,1};
-	mockedRoller.AssignDiceValues(mockedDiceValueArr);
+	mockedRoller = { 1, 1, 1, 1, 1 };
 	Yahtzee game(CreateOnePlayerAsMarcoWithMockedRoller(), DEFAULT_GAME_CONFIG, writer);
 
 	ScoreTable expectedScores;
@@ -106,8 +103,7 @@ TEST_F(YahtzeeTest, on_select_score_should_assign_scores_to_current_player)
 
 TEST_F(YahtzeeTest, on_select_score_should_end_turn_for_current_player)
 {
-	int mockedDiceValueArr[5] = {1,1,1,1,1};
-	mockedRoller.AssignDiceValues(mockedDiceValueArr);
+	mockedRoller = { 1, 1, 1, 1, 1 };
 	Yahtzee game(CreateOnePlayerAsMarcoWithMockedRoller(), DEFAULT_GAME_CONFIG, writer);
 	
 	game.newGame();
@@ -120,8 +116,7 @@ TEST_F(YahtzeeTest, on_select_score_should_end_turn_for_current_player)
 
 TEST_F(YahtzeeTest, on_select_score_should_start_turn_for_other_player)
 {
-	int mockedDiceValueArr[5] = {1,1,1,1,1};
-	mockedRoller.AssignDiceValues(mockedDiceValueArr);	
+	mockedRoller = { 1, 1, 1, 1, 1 };
 	DicePlayer player1("Marco", mockedRoller);
 	DicePlayer player2("Gianluca", mockedRoller);
 	vector<DicePlayer> players; 
@@ -177,19 +172,17 @@ TEST_F(YahtzeeTest, on_full_game_two_players_two_turns)
 	game.newGame();
 
 	// ---- first turn
-    
+	
 	// first player shot
 	{
-		int mockedDiceValueArr[5] = {1,2,3,1,1};
-		mockedRoller.AssignDiceValues(mockedDiceValueArr);	
+		mockedRoller = { 1, 2, 3, 1, 1 };
 	}
 	game.rollDice();
 	game.selectScore(Scores::one);
 
 	// second player shot
 	{
-		int mockedDiceValueArr[5] = {2,2,3,4,5};
-		mockedRoller.AssignDiceValues(mockedDiceValueArr);	
+		mockedRoller = { 2, 2, 3, 4, 5 };
 	}
 	game.rollDice();
 	game.selectScore(Scores::two);
@@ -198,8 +191,7 @@ TEST_F(YahtzeeTest, on_full_game_two_players_two_turns)
 
 	// first player shot
 	{
-		int mockedDiceValueArr[5] = {1,2,3,4,5};
-		mockedRoller.AssignDiceValues(mockedDiceValueArr);	
+		mockedRoller = { 1, 2, 3, 4, 5 };
 	}
 	game.rollDice();
 	game.rollDice(); 
@@ -207,8 +199,7 @@ TEST_F(YahtzeeTest, on_full_game_two_players_two_turns)
 
 	// second player shot
 	{
-		int mockedDiceValueArr[5] = {3,3,3,3,2};
-		mockedRoller.AssignDiceValues(mockedDiceValueArr);	
+		mockedRoller = { 3, 3, 3, 3, 2 };
 	}
 	game.rollDice();
 	game.rollDice(); 

@@ -7,9 +7,8 @@
 #include "../Yahtzee/YahtzeeWriter.h"
 #include "ConsoleWriter.h"
 
-int main(int argc, char **argv)
+int main()
 {
 	ConsoleWriter consoleYahtzee;
 	consoleYahtzee.run();
-	return 0;
 }

@@ -43,7 +43,7 @@ void Yahtzee::rollDice()
 
 void Yahtzee::holdDice( const std::vector<int>& diceToHold )
 {
-	for (int i=0; i<diceToHold.size(); ++i)
+	for (auto i = 0u; i < diceToHold.size(); ++i)
 		dice[diceToHold[i]].hold = true;
 }
 
@@ -69,7 +69,7 @@ void Yahtzee::selectScore( Scores::ScoreName score )
 
 std::string Yahtzee::getWinner()
 {
-	return "";
+	return getRank().front().first->Name();
 }
 
 size_t Yahtzee::numberOfPlayers() const
@@ -79,8 +79,8 @@ size_t Yahtzee::numberOfPlayers() const
 
 void Yahtzee::ResetDice()
 {
-	for (int i=0; i<dice.size(); ++i)
-		dice[i].hold = false;
+	for (auto& die : dice)
+		die.hold = false;
 }
 
 bool Yahtzee::CurrentPlayerHasMoreShots() const
@@ -96,7 +96,7 @@ bool PlayerIsBetterThanOther(const std::pair<const DicePlayer*, const ScoreTable
 std::vector<std::pair<const DicePlayer*, const ScoreTable*>> Yahtzee::getRank() const
 {
 	std::vector<std::pair<const DicePlayer*, const ScoreTable*>> rank;
-	for(int i=0; i<players.size(); ++i)
+	for (auto i = 0u; i < players.size(); ++i)
 	{
 		rank.push_back(make_pair(&players[i], &playerStates[i].currentScores));
 	}
